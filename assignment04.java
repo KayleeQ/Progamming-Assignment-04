@@ -23,11 +23,12 @@ public class assignment04 {
     public static void main(String[] args) {
 
         MyLinkedList[] list = new MyLinkedList[26];
-        int compsfound = 0, wordsfound = 0, compsnotfound = 0, wordsnotfound = 0;
-        int avgcompswordsfound = 0, avgcompswordsnotfound = 0;
+        long compsfound = 0, wordsfound = 0;
+        long compsnotfound = 0, wordsnotfound = 0;
+        long avgcompswordsfound = 0, avgcompswordsnotfound = 0;
         for (int i = 0; i < list.length; i++) {
 
-            list[i] = new MyLinkedList();
+        list[i] = new MyLinkedList();
 
         }
 
@@ -51,7 +52,7 @@ public class assignment04 {
 
             }
 
-            System.out.println("Processing complete: ");
+            System.out.println("Waiting for searching complete... ");
 
             in.close();
 
@@ -67,26 +68,24 @@ public class assignment04 {
             Scanner in = new Scanner(oliver);
 
             while (in.hasNext()) {
-
                 inputWord = in.next();
-
                 inputWord = inputWord.toLowerCase();
+                //inputWord = inputWord.replaceAll("[^A-Za-z]", "");
                 if (Character.isLetter(inputWord.charAt(0))) {
                     int i = (inputWord.charAt(0) - 97);
-
                     if (list[i].contains(inputWord)) {
-                        System.out.println("The list contains: " + inputWord);
+                       // System.out.println("The list contains: " + inputWord);
                         wordsfound++;
                         compsfound += list[i].indexOf(inputWord);
                     } else {
-                        System.out.println("The list does not contain: " + inputWord);
+                        //System.out.println("The list does not contain: " + inputWord);
                         wordsnotfound++;
                         compsnotfound += list[i].size();
                     }
                 }
             }
 
-            System.out.println("Processing complete ");
+            System.out.println("Waiting for searching complete... ");
 
             in.close();
 
@@ -94,16 +93,27 @@ public class assignment04 {
 
             System.out.println("Unable to read file");
 
-        }   
-        
-        System.out.println("-------------------------------");
+        }    
         
         avgcompswordsfound = compsfound / wordsfound;// ( avg # of comps per word) 
-        avgcompswordsnotfound = compsnotfound / wordsnotfound;//(avg # of comps per word not found)
+        avgcompswordsnotfound = compsnotfound / wordsnotfound;//(avg # of comps per word not found
+        
+        System.out.println("====================================================================== ");
+        
+        System.out.println("Words are found: " + wordsfound);
+        System.out.println("Total cpmparison: " + compsfound);
+        
+        System.out.println("====================================================================== ");
+                
+        System.out.println("Words are not found: " + wordsnotfound);
+        System.out.println("Total comparisions: " + compsnotfound);
+        
+        System.out.println("====================================================================== ");
                 
         System.out.println("Average number of compaarisons for wors found: " + avgcompswordsfound);
         System.out.println("Average number of compaarisons for wors not found: " + avgcompswordsnotfound);
         
+        System.out.println("====================================================================== ");
+        
     }
-
 }
